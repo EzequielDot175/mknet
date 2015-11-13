@@ -54,6 +54,15 @@ ob_start();
 			endif;
 		}
 
+		public function userLoggin($id){
+			$sel = $this->prepare(self::AUTH_USERLOGGIN);
+			$sel->bindParam(':id',$id,PDO::PARAM_INT);
+			$sel->execute();
+
+			$_SESSION['MM_IdUsuario'] = $sel->fetch()->id;
+			
+		}
+
 		public static function idAdmin(){
 			self::startSession();
 

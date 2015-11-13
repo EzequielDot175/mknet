@@ -75,6 +75,7 @@
 			const AUTH_USER 					= "SELECT * FROM usuarios WHERE idUsuario = :id"; 
 			const AUTH_USEDPOINTS				= "SELECT SUM(dblTotal) as total FROM compra WHERE idUsuario = :id ";
 			const AUTH_USERADMIN 				= "SELECT * FROM personal WHERE id = :id";
+			const AUTH_USERLOGGIN 				= "SELECT CONCAT(strNombre,' ',strApellido) as name,idUsuario as id FROM usuarios WHERE idUsuario = :id";
 			
 			/**
 			* @param class TempMaxCompra
