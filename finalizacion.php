@@ -73,7 +73,6 @@ endif;
 
 //este checkout y mensaje ponerlo dentro de la confirmacion!
 
-$checkout = TRUE;
 
 
 
@@ -85,7 +84,6 @@ $checkout = TRUE;
 //Aqui comienza el proceso posterior al pago, si existe la como TRUE la variable checkout se realiza la tarea de ingresar pago a la tabla, descontar credito del usuario, etc.
  
 
-if($checkout){
 	
 	//HAY PAGO REALIZADO
 	$tipoDePago = 2; //cambiar el valor a los medios de pagos posibles. puede pasarse el valor directamente a la clase en su llamado de la funcion.
@@ -106,6 +104,9 @@ if($checkout){
 	$empresa_user = $dtuser->getstrEmpresa();
 	$email_user = $dtuser->getstrEmail();
 	
+
+if(!Debug\DBParameters::$debug){
+
 
 
 		require("classes/PHPMailerAutoload.php");
@@ -147,8 +148,8 @@ if($checkout){
 		$mail->send();
 
 
-
 }
+
 
 
 header('Location: confirmacion-carrito.php');

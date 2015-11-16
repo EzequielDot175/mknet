@@ -2,27 +2,12 @@
   session_start();
 }?>
 <?php
-# FileName="Connection_php_mysql.htm"
-# Type="MYSQL"
-# HTTP="true"
-// $hostname_conexion = "localhost";
-// $database_conexion = "pnufarm_productosnufarm";
-// $username_conexion = "root";
-// $password_conexion = "";
 
-/*$hostname_conexion = "localhost";
-$database_conexion = "nufarm";
-$username_conexion = "root";
-$password_conexion = "dot175";*/
 
-// Produsctos nufarm
-// $hostname_conexion = "localhost";
-// $database_conexion = "pnufarm_productosnufarm";
-// $username_conexion = "pnufarm_pnufarm";
-// $password_conexion = "pnufarm123";
 
-// define('LOGIN_NUFARM', 'value');
-// 
+require_once(realpath(__DIR__ . '/..').'/core/pdo/debug.db.php');
+
+use Debug\DBParameters;
 
 if($_SERVER['HTTP_HOST'] == "localhost"):
 	define('LOGIN_NUFARM', 'http://localhost/ftp/loginNufarm');
@@ -30,11 +15,13 @@ else:
 	define('LOGIN_NUFARM', "http://".$_SERVER['HTTP_HOST']);
 endif;
 
+DBParameters::construct();
+
 // NUFARM MAX
-$hostname_conexion = "localhost";
-$database_conexion = "nmaxx_develop";
-$username_conexion = "nmaxx_pnufarm";
-$password_conexion = "K[^Xc0lsU1T(";
+$hostname_conexion = DBParameters::Hostname();
+$database_conexion = DBParameters::Dbname();
+$username_conexion = DBParameters::Username();
+$password_conexion = DBParameters::Password();
 
 $conexion = mysql_connect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR); 
 mysql_query("SET NAMES 'utf8'", $conexion);

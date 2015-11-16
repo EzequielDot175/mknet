@@ -10,6 +10,9 @@
 *
 *
 */
+// require_once('../../core/pdo/debug.db.php');
+require_once(realpath(__DIR__ . '/../..').'/core/pdo/debug.db.php');
+use Debug\DBParameters;
 
   
  class Database
@@ -33,11 +36,12 @@
  // ********** DIESE WERTE ANPASSEN **************
  // ********** ADJUST THESE VALUES HERE **********
 
-$this->host = "localhost";                  //          <<---------
-$this->password = "K[^Xc0lsU1T(";           //          <<---------
-$this->user = "nmaxx_pnufarm";                   //          <<---------
-$this->database = "nmaxx_develop";  
-$this->rows = 0;
+
+$this->host;                  //          <<---------
+$this->password;           //          <<---------
+$this->user;                   //          <<---------
+$this->database;  
+$this->rows;
   
 
 // $this->host = "localhost";           
@@ -50,6 +54,14 @@ $this->rows = 0;
  // **********************************************
  // **********************************************
  
+	 public function __construct(){
+	 	DBParameters::construct();
+	 	$this->host = DBParameters::Hostname();                  //          <<---------
+		$this->password = DBParameters::Password();           //          <<---------
+		$this->user = DBParameters::username();                   //          <<---------
+		$this->database = DBParameters::Dbname();  
+		$this->rows = 0;
+	 }
  
   
  } // Method : end

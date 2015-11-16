@@ -1,18 +1,23 @@
 <?php
+// require_once('../../core/pdo/debug.db.php');
+require_once(realpath(__DIR__ . '/../..').'/core/pdo/debug.db.php');
+use Debug\DBParameters;
 /**
  * 
  */
  class DBModel 
  {
- 	protected $host = "localhost";
-	protected $password = "K[^Xc0lsU1T(";
-	protected $user = "nmaxx_pnufarm";
-	protected $database = "nmaxx_develop";  
+ 	protected $host = "";
+	protected $password = "";
+	protected $user = "";
+	protected $database = "";  
  	protected $db;
  	
  	public function __construct()
  	{
- 		$this->db = new PDO('mysql:host=localhost;dbname='.$this->database, $this->user, $this->password);
+ 		DBParameters::construct();
+
+ 		$this->db = new PDO('mysql:host='.DBParameters::Hostname().';dbname='.DBParameters::Dbname(), DBParameters::Username(), DBParameters::Password());
  	}
  
  	public function query($sql){

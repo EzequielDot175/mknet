@@ -1,11 +1,16 @@
 <?php
+	// require_once('../../../core/pdo/debug.db.php');
+	require_once(realpath(__DIR__ . '/../../..').'/core/pdo/debug.db.php');
+
+	use Debug\DBParameters;
 // error_reporting(E_ALL);
 // ini_set('display_error', 'on');
 	class tallesColores extends PDO
 	{
-		private $dbname = "nmaxx_develop";
-		private $dbuser = "nmaxx_pnufarm";
-		private $dbpass = "K[^Xc0lsU1T(";
+		private $dbname = "";
+		private $dbuser = "";
+		private $dbpass = "";
+		private $host = "";
 		private $stockProd = 0;
 
 		public $usuario;
@@ -31,7 +36,15 @@
 
 
 		public function __construct(){
-			parent::__construct('mysql:host=localhost;dbname='.$this->dbname, $this->dbuser, $this->dbpass);
+
+			DBParameters::construct();
+
+			$this->host = DBParameters::Hostname();
+			$this->dbname = DBParameters::Dbname();
+			$this->dbuser = DBParameters::Username();
+			$this->dbpass = DBParameters::Password();
+
+			parent::__construct('mysql:host='.$this->host.';dbname='.$this->dbname, $this->dbuser, $this->dbpass);
 		}
 
 		public function exist($prod,$color){

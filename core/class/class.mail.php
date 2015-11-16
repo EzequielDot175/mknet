@@ -22,6 +22,7 @@
 			$this->SMTPSecure = 'tls';
 			$this->From = 'mktnet@nufarm-maxx.com';
 			$this->FromName = 'MarketingNet';
+			$this->SMTPDebug = (Debug\DBParameters::$debug ? 2 : 0);
 
 			/**
 			 * Direcciones de destino

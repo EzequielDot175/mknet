@@ -59,7 +59,10 @@ ob_start();
 			$sel->bindParam(':id',$id,PDO::PARAM_INT);
 			$sel->execute();
 
-			$_SESSION['MM_IdUsuario'] = $sel->fetch()->id;
+			$data = $sel->fetch();
+
+			$_SESSION['MM_IdUsuario'] = $data->id;
+			$_SESSION['MM_Username'] = $data->name;
 			
 		}
 

@@ -1,18 +1,21 @@
 <?php 
+	use Debug\DBParameters;
 	/**
 	* 
 	*/
 	class DB extends PDO implements DBInterface
 	{
 
-		private $dbname = "nmaxx_develop";
-		private $dbuser = "nmaxx_pnufarm";
-		private $dbpass = "K[^Xc0lsU1T(";
+		private $dbname = "";
+		private $dbuser = "";
+		private $dbpass = "";
 		
 
 		public function __construct()
 		{
-			parent::__construct('mysql:host=localhost;dbname='.$this->dbname, $this->dbuser, $this->dbpass,array(
+			DBParameters::construct();
+
+			parent::__construct('mysql:host='.DBParameters::Hostname().';dbname='.DBParameters::DBname(), DBParameters::Username(), DBParameters::Password(),array(
 			    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 			    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
 			  ));

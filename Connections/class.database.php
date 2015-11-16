@@ -10,6 +10,9 @@
 *
 *
 */
+require_once(realpath(__DIR__ . '/..').'/core/pdo/debug.db.php');
+
+use Debug\DBParameters;
 
   
  class Database
@@ -42,10 +45,10 @@ $this->database = "nufarm";*/
 // $this->user = "root";                   //          <<---------
 // $this->database = "pnufarm_productosnufarm"; 
 
-$this->host = "localhost";                  //          <<---------
-$this->password = "K[^Xc0lsU1T(";           //          <<---------
-$this->user = "nmaxx_pnufarm";                   //          <<---------
-$this->database = "nmaxx_develop"; 
+$this->host = DBParameters::Hostname();                  //          <<---------
+$this->password = DBParameters::Password();           //          <<---------
+$this->user = DBParameters::Username();                   //          <<---------
+$this->database = DBParameters::Dbname(); 
 
 /*
 $this->host = "localhost";                  //          <<---------

@@ -1,15 +1,20 @@
 <?php 
 	// require_once(dirname(__FILE__).'/control/resources/pdo.php');
+	use Debug\DBParameters;
 
 	class TempStock extends PDO
 	{
 		private $table = "stock";
-		private $dbname = "nmaxx_develop";
-		private $dbuser = "nmaxx_pnufarm";
-		private $dbpass = "K[^Xc0lsU1T(";
+		private $dbname = "";
+		private $dbuser = "";
+		private $dbpass = "";
 
 		public function __construct(){
-			parent::__construct('mysql:host=localhost;dbname='.$this->dbname, $this->dbuser, $this->dbpass);
+
+			DBParameters::construct();
+
+
+			parent::__construct('mysql:host='.DBParameters::Hostname().';dbname='.DBParameters::DBname(), DBParameters::Username(), DBParameters::Password());
 		}
 		
 		public function setTalles($prod, $talles, $user){

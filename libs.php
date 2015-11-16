@@ -2,6 +2,7 @@
 	// error_reporting(E_ALL);
 	// ini_set('display_errors', 'On');
 	define('APP_DIR', dirname(__FILE__));
+	require_once(APP_DIR.'/core/pdo/debug.db.php');
 	require_once(APP_DIR.'/core/class/class.template.php');
 	require_once(APP_DIR.'/core/class/class.upload.php');
 	require_once(APP_DIR.'/core/mail/PHPMailerAutoload.php');
