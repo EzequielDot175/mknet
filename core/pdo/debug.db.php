@@ -24,7 +24,7 @@
 			if(self::$debug){
 				$config->{'hostname'} = "localhost";
 				$config->{'dbname'} = "nmaxx_dev_develop";
-				$config->{'username'} = "dev_nmaxx";
+				$config->{'username'} = "nmaxx_dev_nmaxx";
 				$config->{'password'} = "]x3#WgpD}rQ#";
 
 			}else{
