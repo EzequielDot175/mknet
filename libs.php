@@ -44,7 +44,7 @@
 	require_once(APP_DIR.'/core/class/class.excel.php');
 
 	if(!Debug\DBParameters::$debug){
-		error_reporting(E_ALL);
+		error_reporting(0);
 		ini_set('display_errors','Off');
 	}
 
