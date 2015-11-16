@@ -1,6 +1,6 @@
 
 
-<?php require('inc/header.php'); @session_start(); ?>
+<?php require('inc/header.php');  ?>
 <!-- header -->
 
 
