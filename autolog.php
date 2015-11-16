@@ -5,7 +5,7 @@
 
 
 	$auth = new Auth();
-	$auth->userLoggin(104);
+	$auth->userLoggin(102);
 
 	echo "<pre>";
 	print_r($_SESSION);

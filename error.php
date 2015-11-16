@@ -1,4 +1,6 @@
-<?php require('inc/header.php'); ?>
+
+
+<?php require('inc/header.php'); @session_start(); ?>
 <!-- header -->
 
 
@@ -7,7 +9,7 @@
 
 		<!--head-page-->
 		<div class="head-page col-xs-12 col-sm-12 col-md-12 ol-lg-12">
-			<h3>Su canje ha sido realizado con éxito.</h3>
+			<h3><?php echo (isset($_SESSION['notification']) ? $_SESSION['notification'] : '') ?></h3>
 		</div>
 		<!--end / head-page-->
 
@@ -16,7 +18,7 @@
 			<!-- botones -->
 			<div class="col-xs-12 col-sm-9 col-md-9 ol-lg-9">
 				<div class='block-botones'>
-					<a href="catalogo.php"><button class="boton" type="">VOLVER</button></a>
+					<a href="carrito.php"><button class="boton" type="">VOLVER</button></a>
 				</div>
 			</div>
 			<!--end /  botones -->
@@ -27,6 +29,11 @@
 	</div>
 	<!--end / historial productos-->
 
+	<?php 
+
+		unset($_SESSION['notification']);
+
+	 ?>
 
 <!-- Footer -->
 <?php require('inc/footer.php') ?>

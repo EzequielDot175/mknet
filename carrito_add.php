@@ -8,6 +8,7 @@ if(!isset($_SESSION)):
 	@session_start();
 endif;
 
+
 // function redirect(){
 // 	header('location: http://nufarm-maxx.com/marketingNetDesarrollo/carrito.php');
 // }
@@ -335,18 +336,18 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 
 
 
-		$tempMaxCompra->storeSum($id_producto,$cantidad_elegida);
-		try {
-			$stock = new TempStock();
-			$stock->setComunes($id_producto,$cantidad_elegida,$_SESSION['MM_IdUsuario']);
-		} catch (Exception $e) {
-			echo($e->getMessage());
-		} 
 
 		//Hay stock 
 		//No requiere talles		
 	  	if($cantidad_elegida <= $StockActual){
 			
+			$tempMaxCompra->storeSum($id_producto,$cantidad_elegida);
+			try {
+				$stock = new TempStock();
+				$stock->setComunes($id_producto,$cantidad_elegida,$_SESSION['MM_IdUsuario']);
+			} catch (Exception $e) {
+				echo($e->getMessage());
+			} 
 			//hay en stock y guarda la compra.
 			
 			//primero chequeo si el producto ya existe en el carrito del usuario.
@@ -395,10 +396,12 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
 			
 	  		
 	  	}else{
+
+	  		
 			
 			//No hay stock disponible
-			// $_SESSION["notification"] = "Disculpe, no se encuentra disponible la cantidad seleccionada.";
-	  		@header('location: carrito.php');
+			$_SESSION["notification"] = "Disculpe, no se encuentra disponible la cantidad seleccionada.";
+	  		@header('location: error.php');
 	  		
 	  		exit();
 	  		
