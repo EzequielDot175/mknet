@@ -43,7 +43,7 @@
 	require_once(APP_DIR.'/core/class/class.mail.php');
 	require_once(APP_DIR.'/core/class/class.excel.php');
 
-	if(!Debug\DBInterface::$debug){
+	if(!Debug\DBParameters::$debug){
 		error_reporting(E_ALL);
 		ini_set('display_errors','Off');
 	}
