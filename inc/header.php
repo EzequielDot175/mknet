@@ -1,10 +1,8 @@
 <?php 
-	if(!isset($_SESSION)):
-		session_start();
-		if(empty($_SESSION["MM_IdUsuario"])):
-			header('location: /');
-			exit();
-		endif;
+	@session_start();
+	if(empty($_SESSION["MM_IdUsuario"])):
+		@header('location: /');
+		exit();
 	endif;
 	require('libs.php');
 	$TempMaxCompra = new TempMaxCompra();
