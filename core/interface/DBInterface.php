@@ -647,8 +647,8 @@
 			 * Clientes
 			 */
 			
-			const CLIENTE_OPTIONS = "SELECT idUsuario as id, strEmpresa FROM usuarios";
-			const CLIENTE_BYVENDEDOR = "SELECT idUsuario as id, strEmpresa FROM usuarios WHERE vendedor = :id";
+			const CLIENTE_OPTIONS = "SELECT idUsuario as id, strEmpresa FROM usuarios  ORDER BY strEmpresa ASC";
+			const CLIENTE_BYVENDEDOR = "SELECT idUsuario as id, strEmpresa FROM usuarios WHERE vendedor = :id ORDER BY strEmpresa ASC";
 
 			/**
 			 * @internal
