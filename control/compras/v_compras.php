@@ -113,6 +113,7 @@ require_once('../../libs.php');
                     $collection = Compra::all();
                 endif;
 
+              
                 foreach($collection as $key => $v):
             ?>
 
@@ -120,7 +121,7 @@ require_once('../../libs.php');
                 <div class="item-top">
                     <div class="user collapse-bar" id="trigger-toggle-collapse-<?php echo $v[0]->id_compra ?>">
                         <p>
-                            usuario: <?php echo $v[0]->v_nombre ?> <?php echo $v[0]->v_apellido ?></span> / <?php echo $v[0]->email ?>
+                            usuario: <?php echo $v[0]->v_nombre ?> <?php echo $v[0]->v_apellido ?></span> / <?php echo $v[0]->empresa ?> / <?php echo $v[0]->email ?>
                         </p>
                     </div>
                 </div>
@@ -130,7 +131,7 @@ require_once('../../libs.php');
                 <div class="item-top">
                     <div class="user pointer" id="toggle-btn-item-collapse-<?php echo $v[0]->id_compra ?>">
                         <p>
-                            usuario: <?php echo $v[0]->v_nombre ?> <?php echo $v[0]->v_apellido ?></span> / <?php echo $v[0]->email ?>
+                            usuario: <?php echo $v[0]->v_nombre ?> <?php echo $v[0]->v_apellido ?></span> / <?php echo $v[0]->empresa ?> / <?php echo $v[0]->email ?>
                         </p>
                     </div>
 

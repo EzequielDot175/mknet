@@ -125,6 +125,7 @@
 			 dt.estado_producto as estado_detalle,
 			 dt.id as id_detalle,
 			 usr.strNombre as nombre,
+			 usr.strEmpresa as empresa,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
              usr.idUsuario as user_id,
