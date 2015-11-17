@@ -54,14 +54,12 @@ $this->rows;
  // **********************************************
  // **********************************************
  
-	 public function __construct(){
 	 	DBParameters::construct();
 	 	$this->host = DBParameters::Hostname();                  //          <<---------
 		$this->password = DBParameters::Password();           //          <<---------
 		$this->user = DBParameters::username();                   //          <<---------
 		$this->database = DBParameters::Dbname();  
 		$this->rows = 0;
-	 }
  
   
  } // Method : end
