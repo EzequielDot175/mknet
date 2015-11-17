@@ -1,6 +1,8 @@
 <?php 
 	// require_once('../../core/pdo/debug.db.php');
+	//echo realpath(__DIR__ . '/../..').'/core/pdo/debug.db.php';
 	require_once(realpath(__DIR__ . '/../..').'/core/pdo/debug.db.php');
+	use Debug\DBParameters;
 	/**
 	* 
 	*/
