@@ -75,7 +75,6 @@
 			const AUTH_USER 					= "SELECT * FROM usuarios WHERE idUsuario = :id"; 
 			const AUTH_USEDPOINTS				= "SELECT SUM(dblTotal) as total FROM compra WHERE idUsuario = :id ";
 			const AUTH_USERADMIN 				= "SELECT * FROM personal WHERE id = :id";
-			const AUTH_USERLOGGIN 				= "SELECT CONCAT(strNombre,' ',strApellido) as name,idUsuario as id FROM usuarios WHERE idUsuario = :id";
 			
 			/**
 			* @param class TempMaxCompra
@@ -379,6 +378,7 @@
 			const USUARIO_CHECK_INIT 				 = "SELECT init FROM usuarios WHERE idUsuario = :id";
 			const USUARIO_BY_CLIENTE 				 = "SELECT * FROM usuarios WHERE idUsuario = :id ORDER BY idUsuario DESC";
 			const USUARIO_ALL						 = "SELECT * FROM usuarios  ORDER BY idUsuario DESC  LIMIT :off,:lim";
+			const USUARIO_ALL_NOT_LIMIT				 = "SELECT * FROM usuarios";
 			const USUARIO_PAGES 					 = "SELECT ROUND(COUNT(idUsuario) / :lim) as pages FROM usuarios";
 			const USUARIO_SUMCREDITO                 = "UPDATE usuarios SET dblCredito = dblCredito + :num WHERE idUsuario = :user";
 			const USUARIO_EDIT 						 = "UPDATE usuarios :QUERY WHERE idUsuario = :id";

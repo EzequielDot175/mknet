@@ -7,7 +7,7 @@
 	class DBParameters
 	{
 		
-		public static $debug = true;
+		public static $debug = false;
 		private static $config;
 		
 
