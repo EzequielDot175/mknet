@@ -56,11 +56,13 @@
 			$sql = "";
 			$i = 0;
 			foreach($val as $k => $v):
-				if($v > 0):
+				//if($v > 0):
 				$sql .= "UPDATE colores_talles SET cantidad = '".(int)$v."' WHERE id_producto = '".$prod."' && id_color = '".$color."' && id_talle = '".$k."';";
-				endif;
+				//endif;
+				
 			endforeach;
 
+			
 			return $this->query($sql);
 			// return true;
 		}
