@@ -56,7 +56,7 @@
 						<option value="" selected="" class="text-uppercase option">MARKETING NET</option>
 						<option value="/vendedor-estrella" class="text-uppercase option">VENDEDOR ESTRELLA</option>
 						<?php if(Auth::User()->gold == 1): ?>
-							<option value="/plan-de-negocios">PLAN DE NEGOCIOS</option>
+							<!--<option value="/plan-de-negocios">PLAN DE NEGOCIOS</option>-->
 						<?php endif; ?>
 					</select>
 				</div>
