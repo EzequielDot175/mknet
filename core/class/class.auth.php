@@ -66,6 +66,7 @@ ob_start();
 			
 		}
 
+
 		public static function idAdmin(){
 			self::startSession();
 
