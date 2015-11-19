@@ -2,7 +2,7 @@
 	// require_once(dirname(__FILE__).'/control/resources/pdo.php');
 	use Debug\DBParameters;
 
-	class TempStock extends PDO
+	class TempStock extends PDO implements DBInterface
 	{
 		private $table = "stock";
 		private $dbname = "";
@@ -12,35 +12,34 @@
 		public function __construct(){
 
 			DBParameters::construct();
-
+			// parent::__construct();
 
 			parent::__construct('mysql:host='.DBParameters::Hostname().';dbname='.DBParameters::DBname(), DBParameters::Username(), DBParameters::Password());
 		}
 		
 		public function setTalles($prod, $talles, $user){
-			$insert_stock = "INSERT INTO stock (id_product,id_talle,cantidad,requiere_talle,date,id_user) VALUES ";
+			$insert_stock = self::TEMPSTOCK_INSERT_TEMPL;
 			$i = 0;
 			$time = date('Y-m-d H:i:s');
 			$talles_update = array();
 			$total = 0;
 			
 			foreach($talles as $k => $v):
+				$total += $v;
+
 				if ($v > 0) {
 					if ($i == 0) {
 						$insert_stock .= "(".$prod.", ".$k.",".$v.", 1 , '".$time."' , ".$user.")";
 						$talles_update[] = $this->updateTal($v,$prod,$k);
-						$total += $v;
 						$i++;
 					}else{
 						$insert_stock .= ",(".$prod.", ".$k.",".$v.", 1 , '".$time."' , ".$user.")";
-						$total += $v;
 						$talles_update[] = $this->updateTal($v,$prod,$k);
 					}
 				}
 			endforeach;
 
-			// $stockGeneral = ;
-
+		
 			if ($this->updateStockProd($total,$prod)) {
 				$this->exec($insert_stock);
 				foreach($talles_update as $k => $v):
@@ -171,8 +170,8 @@
 		}
 		private function updateStockTalle($prod,$talle,$user){
 
-			
-			
+
+
 			$intStock = "SELECT intStock FROM productos WHERE idProducto = ".$prod;
 			$intStock = $this->result($intStock)->intStock;
 			$currStock = "SELECT SUM(cantidad) as sum FROM stock WHERE id_user = ".$user." && requiere_talle = 1 && id_product = ".$prod." && id_talle = ".$talle;
@@ -184,7 +183,7 @@
 			* Update
 			*/
 			$update_producto = "UPDATE productos SET intStock = ".$newIntStock." WHERE idProducto = ".$prod;
-			
+
 
 			/**=====**/
 

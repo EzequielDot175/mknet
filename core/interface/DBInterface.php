@@ -70,6 +70,12 @@
 			
 
 			/**
+			 * @param  tempStock
+			 */
+			const TEMPSTOCK_UPDATE_SIZE			= "UPDATE talles_productos as tp SET tp.cantidad = tp.cantidad - :count WHERE id_producto = :prod && id_talle = :size";
+			const TEMPSTOCK_INSERT_TEMPL		= "INSERT INTO stock (id_product,id_talle,cantidad,requiere_talle,date,id_user) VALUES ";
+
+			/**
 			 * @param CLASS: Auth
 			 */
 			const AUTH_USER 					= "SELECT * FROM usuarios WHERE idUsuario = :id"; 
