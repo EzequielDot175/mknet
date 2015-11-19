@@ -394,6 +394,13 @@
 			const USUARIO_SUM_DBLCONSUMIDO_FROM_SHOP = "UPDATE usuarios SET dblConsumido = dblConsumido + (SELECT SUM(prod.dblPrecio * carr.intCantidad) FROM productos as prod NATURAL JOIN carrito as carr  WHERE idUsuario = :id LIMIT 1) WHERE idUsuario = :id ";
 			const USUARIO_GET_MAIL 					 = "SELECT strEmail as mail FROM usuarios WHERE idUsuario = :id ";
 			
+			/**
+			 * @internal
+			 * class: Talles
+			 */
+			const TALLES_GETBYID 					 = "SELECT tp.*, talles.nombre_talle as nombre FROM talles_productos as tp LEFT JOIN talles ON talles.id_talle = tp.id_talle WHERE tp.id_producto = :id";
+			const TALLES_TAKESIZECHOTHING 			 = "UPDATE talles_productos SET cantidad = :count WHERE id_producto = :prod AND id_talle = :size";
+			const TALLES_GETSTOCK 					 = "SELECT cantidad FROM talles_productos WHERE id_producto = :prod AND id_talle = :size";
 			
 			/**
 			* @internal class: Stock
@@ -402,7 +409,7 @@
 			const STOCK_SUMSTOCK_TALLE                = "UPDATE talles_productos SET cantidad = cantidad + :num WHERE id_talle = :talle AND id_producto = :prod ";
 			const STOCK_SUMSTOCK_COLOR                = "UPDATE colores_productos SET cantidad = cantidad + :num WHERE id_color = :color AND id_producto = :prod";
 			const STOCK_SUMSTOCK_TALLECOLOR           = "UPDATE colores_talles SET cantidad = cantidad + :num WHERE id_color = :color AND id_talle = :talle AND id_producto = :prod";
-			const STOCK_SUMSTOCK_PROD = "UPDATE productos SET intStock = intStock + :num WHERE idProducto = :prod";
+			const STOCK_SUMSTOCK_PROD 				  = "UPDATE productos SET intStock = intStock + :num WHERE idProducto = :prod";
 
 
 				/**
@@ -439,6 +446,9 @@
 
 			const SHOPPINGCART_SUM = "SELECT IFNULL(SUM(intCantidad),0) as cantidad FROM carrito WHERE idUsuario = :id";
 			const SHOPPINGCART_REMOVE = "DELETE FROM carrito WHERE intContador = :id";
+			const SHOPPINGCART_CHECKSIZE = "SELECT IF(COUNT(intContador) > 0, 1, 0) as exist FROM carrito WHERE idUsuario = :user AND idProducto  = :prod AND talle = :size ";
+			const SHOPPINGCART_SUMSTOCK = "UPDATE carrito SET intCantidad = intCantidad + :cant WHERE idUsuario = :user AND idProducto  = :prod AND talle = :size ";
+			const SHOPPINGCART_CLOTHINGSIZEINSERT = "INSERT INTO carrito (idUsuario,idProducto,intCantidad,talle) VALUES (:id,:prod,:count,:size)";
 
 
 			/**
@@ -655,8 +665,8 @@
 			 * Clientes
 			 */
 			
-			const CLIENTE_OPTIONS = "SELECT idUsuario as id, strEmpresa FROM usuarios  ORDER BY strEmpresa ASC";
-			const CLIENTE_BYVENDEDOR = "SELECT idUsuario as id, strEmpresa FROM usuarios WHERE vendedor = :id ORDER BY strEmpresa ASC";
+			const CLIENTE_OPTIONS = "SELECT idUsuario as id, strEmpresa FROM usuarios GROUP BY strEmpresa ORDER BY strEmpresa ASC ";
+			const CLIENTE_BYVENDEDOR = "SELECT idUsuario as id, strEmpresa FROM usuarios WHERE vendedor = :id GROUP BY strEmpresa ORDER BY strEmpresa ASC";
 
 			/**
 			 * @internal

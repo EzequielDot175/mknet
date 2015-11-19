@@ -171,6 +171,8 @@
 		}
 		private function updateStockTalle($prod,$talle,$user){
 
+			
+			
 			$intStock = "SELECT intStock FROM productos WHERE idProducto = ".$prod;
 			$intStock = $this->result($intStock)->intStock;
 			$currStock = "SELECT SUM(cantidad) as sum FROM stock WHERE id_user = ".$user." && requiere_talle = 1 && id_product = ".$prod." && id_talle = ".$talle;
@@ -182,7 +184,7 @@
 			* Update
 			*/
 			$update_producto = "UPDATE productos SET intStock = ".$newIntStock." WHERE idProducto = ".$prod;
-
+			
 
 			/**=====**/
 
@@ -219,6 +221,8 @@
 		}
 		public function liberarStockTalle($id_carrito,$user){
 			$carrito = $this->getCarrito($id_carrito);
+
+
 			$this->updateStockTalle($carrito->idProducto,$carrito->talle,$user);
 		}
 		private function updateStockColor($prod,$color,$user){

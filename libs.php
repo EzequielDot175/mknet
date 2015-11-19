@@ -34,6 +34,8 @@
 	require_once(APP_DIR.'/core/class/class.vendedor.php');
 	require_once(APP_DIR.'/core/class/class.colours.php');
 	require_once(APP_DIR.'/core/class/class.historial-credito.php');
+	require_once(APP_DIR.'/core/class/class.talles.php');
+
 
 
 

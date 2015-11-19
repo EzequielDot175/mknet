@@ -96,6 +96,54 @@
 			}
 		}
 
+		public function addClothingSizeProduct($prod_id,$count,$size,$user = null){
+			
+			$user_id = (is_null($user) ? $this->user_id : $user);
+
+			if($this->clothingSizeProductExist($prod_id,$size,$user_id)){
+				
+				$this->chothingSizeSumByParams($prod_id,$size,$user_id,$count);
+			}else{
+				
+				$this->chotingSizeInsert($user_id,$prod_id,$count,$size);
+			}
+		}
+
+
+		public function clothingSizeProductExist($prod_id,$size,$user){
+			$sel = $this->prepare(self::SHOPPINGCART_CHECKSIZE);
+			$sel->bindParam(':user', $user, PDO::PARAM_INT);
+			$sel->bindParam(':prod', $prod_id , PDO::PARAM_INT);
+			$sel->bindParam(':size', $size , PDO::PARAM_INT);
+			$sel->execute();
+
+
+			return (Boolean)$sel->fetch()->exist;
+		}
+
+		public function chothingSizeSumByParams($prod_id,$size,$user,$count){
+			$upd = $this->prepare(self::SHOPPINGCART_SUMSTOCK);
+			$upd->bindParam(':user', $user, PDO::PARAM_INT);
+			$upd->bindParam(':prod', $prod_id , PDO::PARAM_INT);
+			$upd->bindParam(':size', $size , PDO::PARAM_INT);
+			$upd->bindParam(':cant', $count , PDO::PARAM_INT);
+			$upd->execute();
+
+			return $upd->rowCount();
+		}
+
+		public function chotingSizeInsert($user,$prod,$count,$size){
+			$ins = $this->prepare(self::SHOPPINGCART_CLOTHINGSIZEINSERT);
+			$ins->bindParam(':id',$user,PDO::PARAM_INT);
+			$ins->bindParam(':prod',$prod,PDO::PARAM_INT);
+			$ins->bindParam(':count',$count,PDO::PARAM_INT);
+			$ins->bindParam(':size',$size,PDO::PARAM_INT);
+			$ins->execute();
+
+			return $ins->rowCount();
+		}
+
+
 
 		public static function sum(){
 			return (new ShoppingCart())->getSum();
