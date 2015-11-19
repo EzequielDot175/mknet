@@ -82,8 +82,12 @@ ob_start();
 
 
 			
-			
-			if($this->updateStockProd($total,$prod)):
+			// echo "<pre>";
+			// print_r($sql);
+			// print_r($updates);
+			// echo "</pre>";
+			// die();
+			//if($this->updateStockProd($total,$prod)):
 				if ($this->exec($sql) == 0):
 					throw new Exception("Error al iniciar el guardado en stock temporal", 1);
 				else:
@@ -93,7 +97,7 @@ ob_start();
 						endif;
 					endforeach;
 				endif;
-			endif;
+			//endif;
 
 
 		}
