@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 	// require_once(dirname(__FILE__).'/control/resources/pdo.php');
 	use Debug\DBParameters;
 
@@ -39,13 +40,15 @@
 				}
 			endforeach;
 
-		
-			if ($this->updateStockProd($total,$prod)) {
-				$this->exec($insert_stock);
+			
+			
+			//if ($this->updateStockProd($total,$prod)) {
+				var_dump($this->query($insert_stock));
 				foreach($talles_update as $k => $v):
-					$this->exec($v);
+					var_dump($this->query($v));
 				endforeach;
-			}
+			//}
+			//
 		}
 		public function setTallesColores($prod, $pedido, $user){
 			

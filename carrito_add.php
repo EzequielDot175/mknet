@@ -115,7 +115,6 @@ $tempMaxCompra = new TempMaxCompra();
 		
 		@header('location: carrito.php');
 		
-		exit();
 		
 	}else if($requiere_talles==2){
 		//requiere talles
@@ -165,7 +164,7 @@ $tempMaxCompra = new TempMaxCompra();
 																
 							@header('location: carrito.php');
 							
-							exit();
+							
 							
 																
 															
@@ -191,7 +190,7 @@ $tempMaxCompra = new TempMaxCompra();
 		
 		@header('location: carrito.php');
 		
-		exit();
+		
 		
 		// echo "<script>window.location.href = 'mi_cuenta.php?activo=2'</script>";
 
@@ -219,7 +218,7 @@ $tempMaxCompra = new TempMaxCompra();
 			$_SESSION["notification"] = "Disculpe, no se encuentra disponible la cantidad seleccionada.";
 	  		@header('location: carrito.php');
 	  		
-	  		exit();
+	  		
 	  		
 		endif;
 
@@ -264,7 +263,7 @@ $tempMaxCompra = new TempMaxCompra();
 
 		@header('location: carrito.php');
 		
-		exit();
+		
 		
 
 
@@ -311,7 +310,7 @@ $tempMaxCompra = new TempMaxCompra();
 										
 										@header('location: carrito.php');
 										
-										exit();
+										
 										
 										
 									}else{
@@ -327,7 +326,7 @@ $tempMaxCompra = new TempMaxCompra();
 									
 										@header('location: carrito.php');
 										
-										exit();
+										
 										
 									}
 			
@@ -342,7 +341,7 @@ $tempMaxCompra = new TempMaxCompra();
 			$_SESSION["notification"] = "Disculpe, no se encuentra disponible la cantidad seleccionada.";
 	  		@header('location: error.php');
 	  		
-	  		exit();
+	  		
 	  		
 
 			
@@ -354,6 +353,6 @@ $tempMaxCompra = new TempMaxCompra();
 	// header('location: http://nufarm-maxx.com/marketingNetDesarrollo/carrito.php');
 @header('location: carrito.php');
 
-exit();
+
 
 ?>
