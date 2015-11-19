@@ -283,8 +283,8 @@ $vigencia_credito = $dia.'-'.$mes.'-'.$anio;
 
 <div class="historial-c">
 <div class="credit-update">
-<p style="font-size:18px;color:#008752;margin-bottom: -8px">Crédito actual</p>
-<p style="font-size: 27px;padding-bottom:10px;color:#008752"><?php  echo "$ $dblCredito"; ?></p>
+<p style="font-size:18px;color:#008752;margin-bottom: -8px">Puntos actuales</p>
+<p style="font-size: 27px;padding-bottom:10px;color:#008752"><?php  echo " $dblCredito"; ?></p>
 </div>	
 <?php  
 	include_once('../historiales/classes/class.historiales.php');

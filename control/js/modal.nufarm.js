@@ -28,6 +28,7 @@
 
 		var putContent = function(id){
 			getInfoById(id,function(data){
+				console.info('data', data);
 				putContentById("name",data.nombre+"<span>"+data.fecha+"</span>");
 				putContentById("reference","<span>Remito</span> : "+data.remito);
 				putContentById("username","<span>Usuario</span> : "+data.usuario);
@@ -36,7 +37,7 @@
 				putContentById("price","<span>Puntos por unidad</span> : "+data.precio);
 				putContentById("colour","<span>Color</span> : "+data.color);
 				putContentById("size","<span>Talle</span> : "+data.talle);
-				putContentById("refund","<span>Puntos restablecidos al cliente:</span> : "+data.total+"p");
+				putContentById("refund","<span>Puntos restablecidos al cliente:</span> : "+( parseInt(data.cantidad) * parseInt(data.precio) )+"p");
 				changeSrc("image",data.img);
 				open();
 
@@ -119,6 +120,15 @@
 			}
 
 		});
+
+
+		/** center modal on window */
+		$(window).scroll(function(event) {
+			/* Act on the event */
+			content.css({top: $(this).scrollTop()});
+			//console.info('Reporting :', $(this).scrollTop());
+		});
+
 	}
 	
 	

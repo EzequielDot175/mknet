@@ -59,7 +59,7 @@ if(!class_exists('compra')):
 
 		public function allCompras(){
 			$compras = array();
-			$collection = $this->query(self::COMPRA_ALL.$this->orderBy())->fetchAll();
+			$collection = $this->query(self::COMPRA_ALL)->fetchAll();
 
 			foreach($collection as $key => $val):
 				$compras[$val->id_compra][] = $val;
@@ -175,6 +175,11 @@ if(!class_exists('DetalleCompra')):
 				/**
 				 * @php Seteo la devolucion del stock personal (maximos y minimos)
 				 */
+				
+				$historial = new HistorialCredito();
+
+
+
 				$remains = new stdClass();
 				$remains->{'intCantidad'} =  $info->cantidad;
 				$remains->{'idProducto'} =  $info->producto;
@@ -184,6 +189,15 @@ if(!class_exists('DetalleCompra')):
 
 				$compra->setTotal($newTotal, $info->user , $info->compra);
 				$usuario->sumarCredito($info->pagado,$info->user);
+				/**
+				 * Agrego historial de compra
+				 */
+				$historial->add($info->user,$info->pagado);
+				/**
+				 * Update Consumido 
+				 */
+				$this->updateConsumido($info->user,$info->pagado);
+
 				$stock->sumStock($info->talle,$info->color,$info->cantidad,$info->producto);
 				$this->delete($id);
 
@@ -224,6 +238,15 @@ if(!class_exists('DetalleCompra')):
 			$sel->bindParam(':id',$id,PDO::PARAM_INT);
 			$sel->execute();
 			return $sel->fetch(PDO::FETCH_OBJ);
+		}
+
+		public function updateConsumido($user,$cant){
+			$upd = $this->prepare(self::COMPRA_REFUND_CONS);
+			$upd->bindParam(':cant',$cant, PDO::PARAM_INT);
+			$upd->bindParam(':id', $user, PDO::PARAM_INT);
+			$upd->execute();
+
+			return $upd->rowCount();
 		}
 
 

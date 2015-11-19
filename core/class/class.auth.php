@@ -60,10 +60,8 @@ ob_start();
 			$sel->execute();
 
 			$data = $sel->fetch();
-
 			$_SESSION['MM_IdUsuario'] = $data->id;
 			$_SESSION['MM_Username'] = $data->name;
-			
 		}
 
 

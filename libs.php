@@ -33,7 +33,7 @@
 	require_once(APP_DIR.'/core/class/class.clientes.php');
 	require_once(APP_DIR.'/core/class/class.vendedor.php');
 	require_once(APP_DIR.'/core/class/class.colours.php');
-	require_once(APP_DIR.'/core/class/class.productStockHistory.php');
+	require_once(APP_DIR.'/core/class/class.historial-credito.php');
 
 
 

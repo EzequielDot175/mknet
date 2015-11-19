@@ -100,10 +100,10 @@
 
 
 			/**
-			* @param class productStockHistory
-			*/
-			const PSH_GETSTOCK = "SELECT intStock FROM productos WHERE idProducto = :id";
-			const PSH_INSERT   = "INSERT INTO productStockHistory (current_stock,next_stock,id_product) VALUES (:after,:before,:id)";
+			 * @param class: Historiales
+			 */
+			const HISTORIAL_ADD 				= "INSERT INTO historiales (id_usuario,fecha,realizado_por,tipo_modificacion,monto_modificado) VALUES (:id,:date,:by,:modif,:mounth) ";
+
 
 			/**
 			* @param class: Compra
@@ -128,6 +128,7 @@
 			 usr.strEmpresa as empresa,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
+			 usr.strEmpresa as empresa,
              usr.idUsuario as user_id,
              prs.nombre as v_nombre,
              prs.apellido as v_apellido,
@@ -145,6 +146,7 @@
             	personal as prs ON prs.id = usr.vendedor
            	LEFT JOIN 
            		productos as prod ON prod.idProducto = dt.id_producto ";
+           	const COMPRA_REFUND_CONS = "UPDATE usuarios SET dblConsumido = dblConsumido - :cant WHERE idUsuario = :id";
 
            	const COMPRA_ALL_BY_STATE = "SELECT
 			 compra.fthCompra,
@@ -162,6 +164,7 @@
 			 usr.strNombre as nombre,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
+			 usr.strEmpresa as empresa,
              usr.idUsuario as user_id,
              prs.nombre as v_nombre,
              prs.apellido as v_apellido,
@@ -198,6 +201,7 @@
 			 usr.strNombre as nombre,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
+			 usr.strEmpresa as empresa,
              usr.idUsuario as user_id,
              prs.nombre as v_nombre,
              prs.apellido as v_apellido,
@@ -232,6 +236,7 @@
 			 usr.strNombre as nombre,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
+			 usr.strEmpresa as empresa,
              usr.idUsuario as user_id,
              prs.nombre as v_nombre,
              prs.apellido as v_apellido,
@@ -266,6 +271,7 @@
 			 	usr.strNombre as nombre,
 			 	usr.strApellido as apellido,
 			 	usr.strEmail as email,
+			 	usr.strEmpresa as empresa,
              	usr.idUsuario as user_id,
              	prs.nombre as v_nombre,
              	prs.apellido as v_apellido,
@@ -302,6 +308,7 @@
 			 usr.strNombre as nombre,
 			 usr.strApellido as apellido,
 			 usr.strEmail as email,
+			 usr.strEmpresa as empresa,
              usr.idUsuario as user_id,
              prs.nombre as v_nombre,
              prs.apellido as v_apellido,
