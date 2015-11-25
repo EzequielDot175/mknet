@@ -148,7 +148,7 @@
 									<td class="col-C color">
 										<div class="background-2">
 											<!-- SI NO HAY COLORs-->
-											<?php if(is_null($valdetalles->color) || empty($valdetalles->talle)): ?>
+											<?php if(is_null($valdetalles->color) || empty($valdetalles->color)): ?>
 											 	<p class="text-uppercase inactivo medium-text">n/a</p>
 											<?php else: ?>
 												<div class="color">
