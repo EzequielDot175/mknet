@@ -16,6 +16,7 @@
 				'verde' => "#009448",
 				'negro' => "#000000",
 				'gris oscuro' => "#414141",
+				'gris' => "#E6E6E6",
 				'verde seco' => "#54B649"
 			);
 
