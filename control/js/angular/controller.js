@@ -88,16 +88,16 @@ app.controller('FiltroController', ['$scope','ajax','$rootScope', function ($sco
 
 		switch(estate){
 			case '1':
-				return 'Pedido Pendiente';
+				return 'PEDIDO REALIZADO';
 				break;
 			case '2':
-				return 'Pedido en Proceso';
+				return 'PEDIDO EN PROCESO';
 				break;
 			case '3':
-				return 'Pedido enviado';
+				return 'PEDIDO ENVIADO';
 				break;
 			case '4':
-				return 'Pedido entregado';
+				return 'PEDIDO ENTREGADO';
 				break;
 			default:
 				return 'SIN ESTADO';
@@ -146,16 +146,19 @@ app.controller('ResultsController', ["$scope","$rootScope",function(scp,rscp){
 		var status = parseInt(num);
 		switch(status){
 			case 1:
-				return "Pendiente";
+				return "PEDIDO REALIZADO";
 				break;
 			case 2:
-				return "En Proceso";
+				return "PEDIDO EN PROCESO";
 				break;
 			case 3:
-				return "Enviado";
+				return "PEDIDO ENVIADO";
 				break;
 			case 4:
-				return "Entregado";
+				return "PEDIDO ENTREGADO";
+				break;
+			default:
+				return 'SIN ESTADO';
 				break;
 		}
 	}

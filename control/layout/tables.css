@@ -430,7 +430,7 @@ section > div.table-item > div.prod-list > div > div.prod-det > div > p.name{
 	width: 82%;
 }
 
-section > div.table-item > div.prod-list > div > div.prod-det > div > p.name span{
+section > div.table-item > div.prod-list > div > div.prod-det > div > p.name span.price{
 	float: right;
 	width: 20%;
 	font-size: 12px;
@@ -470,4 +470,11 @@ section > div.table-item > div.prod-list > div > div:nth-child(6){
 .client-section{
 	width: 90%;
 
+}
+
+
+@media screen and (max-width: 1490px){
+	section > div.table-item > div.prod-list > div > div.prod-det > div > p.name span.span-name{
+		font-size: 9px;
+	}
 }

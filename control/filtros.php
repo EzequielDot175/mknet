@@ -193,11 +193,11 @@
 									<option value="">Producto canjeado</option>
 								</select>
 								<select name="" id="" ng-model="filtro.estado">
-									<option value="">Estado de entrega</option>
-									<option value="1">Pendiente</option>
-									<option value="2">En Proceso</option>
-									<option value="3">Enviado</option>
-									<option value="4">Entregado</option>
+									<option value="">ESTADO</option>
+									<option value="1">PEDIDO REALIZADO</option>
+									<option value="2">PEDIDO EN PROCESO</option>
+									<option value="3">PEDIDO ENVIADO</option>
+									<option value="4">PEDIDO ENTREGADO</option>
 								</select>
 							</div>
 							<div class="filtros-w100 filtros-B">
@@ -278,9 +278,11 @@
 	            				<div>
 		            				<img ng-src="../images_productos/{{prod.img}}"/>
 		            				<p class="name">
-		            					{{prod.name}}
+		            					<span class="span-name">
+		            						{{prod.name}}
+		            					</span>
 
-		            					<span>
+		            					<span class="price">
 		            						{{prod.price}}
 		            					</span>
 		            				</p>
