@@ -127,12 +127,14 @@
 			$this->excel->getActiveSheet()->setCellValue('D1','VENDEDOR ');
 			$this->excel->getActiveSheet()->setCellValue('E1','CLIENTE');
 			$this->excel->getActiveSheet()->setCellValue('F1','PRODUCTO');
-			$this->excel->getActiveSheet()->setCellValue('G1','UNIDADES');
-			$this->excel->getActiveSheet()->setCellValue('H1','PAGADO');
-			$this->excel->getActiveSheet()->getStyle('A1:H1')->getFont()->setBold(true);
-			$this->excel->getActiveSheet()->getStyle('A1:H1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-			$this->excel->getActiveSheet()->getStyle('A1:H1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
-			$this->excel->getActiveSheet()->getStyle('A1:H1')->getFill()->getStartColor()->setARGB('DDD9C4');
+			$this->excel->getActiveSheet()->setCellValue('G1','TALLE');
+			$this->excel->getActiveSheet()->setCellValue('H1','COLOR');
+			$this->excel->getActiveSheet()->setCellValue('I1','UNIDADES');
+			$this->excel->getActiveSheet()->setCellValue('J1','PAGADO');
+			$this->excel->getActiveSheet()->getStyle('A1:J1')->getFont()->setBold(true);
+			$this->excel->getActiveSheet()->getStyle('A1:J1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+			$this->excel->getActiveSheet()->getStyle('A1:J1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
+			$this->excel->getActiveSheet()->getStyle('A1:J1')->getFill()->getStartColor()->setARGB('DDD9C4');
 	
 			$formatData = array();
 
@@ -143,12 +145,12 @@
 			'VENDEDOR ',
 			'CLIENTE',
 			'PRODUCTO',
+			'TALLE',
+			'COLOR',
 			'UNIDADES',
 			'PAGADO');
 			
 			$startKey = 2;
-
-
 
 			foreach($data as $keyCompras => $compra):
 
@@ -165,8 +167,10 @@
 								$compra['total'],
 								$detalle->v_nombre." ".$detalle->v_apellido,
 								$detalle->strNombre." ".$detalle->strApellido,
-								$detalle->cantidad,
 								$detalle->prod_nombre,
+								$detalle->talle,
+								$detalle->color,
+								$detalle->cantidad,
 								$detalle->pagado
 							);
 
