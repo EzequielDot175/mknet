@@ -4,6 +4,16 @@ require_once('libs.php');
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
+
+if($_SESSION['sended'] == 1){
+	header('location: carrito.php');
+	die();
+}
+
+$_SESSION['sended'] = 1;
+
+	
+
 if(!isset($_SESSION)):
 	@session_start();
 endif;
@@ -61,6 +71,9 @@ $tempMaxCompra = new TempMaxCompra();
 
 	if($requiere_talles==1){
 
+
+		
+
 		$talles = new Core\Talles();
 		$shoppingcart = new shoppingcart();
 
@@ -104,6 +117,7 @@ $tempMaxCompra = new TempMaxCompra();
 		endforeach;
 
 		$tempMaxCompra->storeSum($id_producto,$total);
+		// die;
 		try {
 			$stock = new TempStock();
 			$stock->setTalles($id_producto,$talles_seleccionados,$_SESSION['MM_IdUsuario']);	

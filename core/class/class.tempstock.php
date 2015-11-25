@@ -43,10 +43,14 @@ ob_start();
 			
 			
 			//if ($this->updateStockProd($total,$prod)) {
-				var_dump($this->query($insert_stock));
+				//$this->sumUsed(array_sum($talles),2,2);
+				
+			
+				$this->exec($insert_stock);
 				foreach($talles_update as $k => $v):
-					var_dump($this->query($v));
+					$this->exec($v);
 				endforeach;
+
 			//}
 			//
 		}
@@ -265,6 +269,11 @@ ob_start();
 			return $sql;
 
 		}
+
+		
+
+
+
 		private function toBoolean($result){
 			return (boolean)$result;
 		}

@@ -25,7 +25,7 @@ $cond =  (  isset($_GET['recordID']) && !empty($_GET['recordID']) && !isset($_GE
 
 
 $tempMaxCompra = new TempMaxCompra();
-$tempMaxCompra->storeRemains($_GET['recordID']);
+
 
 
 if ( isset($_GET['require'])) {
@@ -34,6 +34,7 @@ if ( isset($_GET['require'])) {
          try {
           $x = new TempStock();
           $x->liberarStockTalle($_GET['recordID'],$_SESSION['MM_IdUsuario']);
+          $tempMaxCompra->storeRemains($_GET['recordID']);
         } catch (Exception $e) {
           echo($e->getMessage());
         }
@@ -43,6 +44,7 @@ if ( isset($_GET['require'])) {
         try {
           $x = new TempStock();
           $x->liberarStockColor($_GET['recordID'],$_SESSION['MM_IdUsuario']);
+          $tempMaxCompra->storeRemains($_GET['recordID']);
         } catch (Exception $e) {
           echo($e->getMessage());
         }
@@ -52,6 +54,7 @@ if ( isset($_GET['require'])) {
         try {
           $x = new TempStock();
           $x->liberarStockColorTalle($_GET['recordID'],$_SESSION['MM_IdUsuario']);
+          $tempMaxCompra->storeRemains($_GET['recordID']);
         } catch (Exception $e) {
           echo($e->getMessage());
         }
@@ -61,6 +64,7 @@ if ( isset($_GET['require'])) {
          try {
           $x = new TempStock();
           $x->liberarStockComunes($_GET['recordID'],$_SESSION['MM_IdUsuario']);
+          $tempMaxCompra->storeRemains($_GET['recordID']);
         } catch (Exception $e) {
           echo($e->getMessage());
         }

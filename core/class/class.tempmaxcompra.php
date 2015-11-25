@@ -26,6 +26,7 @@
 		{
 			parent::__construct();
 			$this->setInitsData();
+			$this->user = Auth::id();
 		}
 
 		/**
@@ -104,6 +105,16 @@
 			$upd->bindParam(':prod',$prod,PDO::PARAM_INT);
 			$upd->bindParam(':user',$this->user,PDO::PARAM_INT);
 			$upd->execute();
+
+			echo "<pre>";
+			var_dump($cant);
+			echo "<br>";
+			var_dump($prod);
+			echo "<br>";
+			var_dump($this->user);
+			echo "<br>";
+
+			echo "</pre>";
 		}
 		/**
 		* @todo Metodo que hace exactamente lo contrario a storeSum, resta cantidades agregadas a la cantidad de compra total

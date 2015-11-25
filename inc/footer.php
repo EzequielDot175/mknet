@@ -34,6 +34,16 @@
 		});
 
 	});
+
+		var click = 0;
+		$('.close-link').click(function(event) {
+			console.info('Reporting click', click);
+			if(click > 0){
+				event.preventDefault();
+			}
+			click++;
+			/* Act on the event */
+		});
 </script>
 
 </body>

@@ -9,7 +9,10 @@
 	$limitCompra = $tempMaxCompra->getMaxCompra();
 
 	$intMinCompra = $tempMaxCompra->getMinCompra();
-	
+
+	$_SESSION['sended'] = 0;
+
+
 ?>
 <!-- Header -->
 

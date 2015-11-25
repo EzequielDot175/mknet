@@ -77,7 +77,7 @@
 						<p class="text-uppercase big-text "><?php echo $val->precio ?></p>
 					</td>
 					<td class="quitarA col-A">
-						<a href="carrito_lista_delete.php?recordID=<?php echo $val->id ?>&require=<?php echo $val->type ?>">
+						<a class="close-link" href="carrito_lista_delete.php?recordID=<?php echo $val->id ?>&require=<?php echo $val->type ?>">
 							<p class="text-uppercase">
 								quitar
 								<img class="cerrar" src="assets/images/cerrar.png" alt="">
@@ -154,6 +154,8 @@
 
 </div>
 <!--end / historial productos-->
+
+
 
 
 <!-- Footer -->
