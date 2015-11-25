@@ -36,7 +36,7 @@
 			<?php 
 			$i= 0;
 			foreach($items as $key => $val):
-			
+				
 				?>
 				<!--!item-->
 				<tr class="item">
@@ -51,9 +51,9 @@
 					<td class="col-B">
 
 						<!-- talle-->
-						<?php if($val->color == ''): //si no hay color ?>
+						<?php if($val->talle == ''): //si no hay color ?>
 							<p class="text-uppercase inactivo">n/a</p>
-						<?php elseif(!is_null($val->color)): //si hay color ?>
+						<?php elseif(!is_null($val->talle)): //si hay color ?>
 							<p class="text-uppercase big-text"><?php echo $val->talle ?></p>
 						<?php endif;  ?>
 

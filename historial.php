@@ -96,6 +96,7 @@
 								<?php
 									$x = 0;
 									foreach($valcompras as $keydetalles => $valdetalles):
+
 									
 								 ?>
 								 
@@ -117,7 +118,7 @@
 									<!-- img -->
 							 		<td class="">
 										<div class="producto">
-											<img src="images_productos/<?php echo $val->img ?>" alt="">
+											<img src="images_productos/<?php echo $valdetalles->img ?>" alt="">
 										</div>
 									</td>
 									<!--end /  img -->
