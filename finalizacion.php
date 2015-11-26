@@ -5,19 +5,6 @@ if (!isset($_SESSION)) {
 }
 
 
-// function redirect(){
-//   echo('<script>window.location.href="confirmacion-carrito.php";</script>');
-// }
-
-$MM_authorizedUsers = "";
-$MM_donotCheckaccess = "true";
-
-
-// require_once('QueryConstants.php');
-// require_once('PDOConfig.php');
-// require_once('TempStock.php'); 
-
-
 require_once('libs.php'); 
 require_once('includes/class.compras.php');
 error_reporting(E_ALL);
@@ -53,22 +40,17 @@ $template = new Template('pedido',array(
 
 $checkVencimiento = new TempStock();
 $can = $checkVencimiento->fechaVencimiento($_SESSION['MM_IdUsuario']);
-if($can):
-	header('Location: catalogo.php');
-endif;
+	if($can):
+		header('Location: catalogo.php');
+	endif;
 
 
-?>
-
-<?php require_once('Connections/conexion.php'); ?>
-
-<?php if ($_POST["radio"]==2)
-{
-	#ConfirmacionPago($_POST["radio"]);
-	
+(new Compra())->confirm();
 
 
-}
+
+
+die;
 
 
 //este checkout y mensaje ponerlo dentro de la confirmacion!
@@ -79,30 +61,30 @@ endif;
  /**
   * Updateo el dblConsumido directamente desde el carrito de compras
   */
- Usuario::sumConsumido();
+// Usuario::sumConsumido();
 
 //Aqui comienza el proceso posterior al pago, si existe la como TRUE la variable checkout se realiza la tarea de ingresar pago a la tabla, descontar credito del usuario, etc.
  
 
 	
 	//HAY PAGO REALIZADO
-	$tipoDePago = 2; //cambiar el valor a los medios de pagos posibles. puede pasarse el valor directamente a la clase en su llamado de la funcion.
+	//$tipoDePago = 2; //cambiar el valor a los medios de pagos posibles. puede pasarse el valor directamente a la clase en su llamado de la funcion.
 	
-	require_once("includes/class.carrito.php");
-	$carrito= new carrito();
-	$carrito->select_by_user($_SESSION["MM_IdUsuario"],$tipoDePago, ObtenerIVA());
+	//require_once("includes/class.carrito.php");
+	//$carrito= new carrito();
+	//$carrito->select_by_user($_SESSION["MM_IdUsuario"],$tipoDePago, ObtenerIVA());
 	
 	
 	#informacion del usuario
 	
 
-	require_once("includes/class.usuarios.php");
-	$dtuser = new usuarios();
-	$dtuser->select($_SESSION["MM_IdUsuario"]);
-	$nombre_user = $dtuser->getstrNombre();
-	$apellido_user = $dtuser->getstrApellido();
-	$empresa_user = $dtuser->getstrEmpresa();
-	$email_user = $dtuser->getstrEmail();
+	// require_once("includes/class.usuarios.php");
+	// $dtuser = new usuarios();
+	// $dtuser->select($_SESSION["MM_IdUsuario"]);
+	// $nombre_user = $dtuser->getstrNombre();
+	// $apellido_user = $dtuser->getstrApellido();
+	// $empresa_user = $dtuser->getstrEmpresa();
+	// $email_user = $dtuser->getstrEmail();
 	
 
 if(!Debug\DBParameters::$debug){

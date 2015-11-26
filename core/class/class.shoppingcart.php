@@ -121,6 +121,17 @@
 			return (Boolean)$sel->fetch()->exist;
 		}
 
+		public function confirm(){
+			$user = Auth::id();
+			$myShop = $this->all();
+
+			foreach($myShop as $key => $val):
+				echo "<pre>";
+				print_r($val);
+				echo "</pre>";
+			endforeach;
+		}
+
 		public function chothingSizeSumByParams($prod_id,$size,$user,$count){
 			$upd = $this->prepare(self::SHOPPINGCART_SUMSTOCK);
 			$upd->bindParam(':user', $user, PDO::PARAM_INT);

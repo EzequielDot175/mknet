@@ -40,6 +40,13 @@ if(!class_exists('compra')):
 		}
 
 		/**
+		 * 
+		 */
+		public function Confirm(){
+			echo "string";
+		}
+
+		/**
 		 * @internal id : id compra
 		 */
 		public function delete($id){
