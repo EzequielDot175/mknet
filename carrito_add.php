@@ -231,7 +231,7 @@ $tempMaxCompra = new TempMaxCompra();
 
 		try {
 			$stock = new TempStock();
-			$stock->setTallesColores($id_producto,$_POST['pedido'],$_SESSION['MM_IdUsuario']);
+			$stock->setTallesColores($id_producto,$pedido,$_SESSION['MM_IdUsuario']);
 		} catch (Exception $e) {
 			echo($e->getMessage());
 		}
