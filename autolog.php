@@ -7,7 +7,7 @@
 
 
 	$_SESSION["logged_id"] =  10;
-	$_SESSION['MM_IdUsuario'] = 108;
+	$_SESSION['MM_IdUsuario'] = 104;
 	$_SESSION['MM_Username'] = 'user';
 
 
