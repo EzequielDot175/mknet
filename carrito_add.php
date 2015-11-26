@@ -201,18 +201,28 @@ $tempMaxCompra = new TempMaxCompra();
 
 		$canTotal = 0;
 
+
+
+		
+
 		foreach($pedido as $kz => $vz):
 			foreach($vz['talle'] as $k => $v):
-				$canTotal += (int)$v;
+				$limitSizeColour = $tempMaxCompra->getCurrentStockColourSize($id_producto,$kz,$k);
+				var_dump((int)$v);
+				if($v <= (int)$limitSizeColour){
+					$canTotal += (int)$v;
+				}else{
+					unset($pedido[$kz]['talle'][$k]);
+				}
 			endforeach;
 		endforeach;
 
+
 		$limite = $tempMaxCompra->getMaxCompra($id_producto);
+
 		if((int)$canTotal > (int)$limite):
 			$_SESSION["notification"] = "Disculpe, no se encuentra disponible la cantidad seleccionada.";
 	  		@header('location: carrito.php');
-	  		
-	  		
 	  		
 		endif;
 

@@ -103,6 +103,8 @@
 			const MAXCOMPRA_USED 				= "SELECT used FROM `tempmaxcompra` WHERE `user` = :user AND `prod` = :prod ";
 			const MAXCOMPRA_MIN_PROD 			= "SELECT intMinCompra FROM productos WHERE idProducto = :prod";
 			const MAXCOMPRA_GETEXPIRED			= "SELECT *  FROM `carrito` WHERE timediff(NOW(),creation) >= :expiration";
+			const MAXCOMPRA_GETBYCOLORANDSIZE	= "SELECT cantidad FROM colores_talles WHERE id_producto = :id AND id_color = :color AND id_talle = :talle";
+			
 
 
 			/**

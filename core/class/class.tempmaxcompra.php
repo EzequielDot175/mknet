@@ -81,6 +81,17 @@
 			endif;
 		}
 
+		public function getCurrentStockColourSize($prod,$colour,$size){
+
+			$sel =  $this->prepare(self::MAXCOMPRA_GETBYCOLORANDSIZE);
+			$sel->bindParam(':id',$prod,PDO::PARAM_INT);
+			$sel->bindParam(':talle',$size,PDO::PARAM_INT);
+			$sel->bindParam(':color',$colour,PDO::PARAM_INT);
+			$sel->execute();
+
+			return $sel->fetch()->cantidad;
+		}
+
 		/**
 		 * @todo
 		 * Metodo para obtener el minimo segun el carrito 
