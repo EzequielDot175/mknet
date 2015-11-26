@@ -7,7 +7,12 @@
 
 
 	$_SESSION["logged_id"] =  10;
-	$_SESSION['MM_IdUsuario'] = 104;
+
+	if(isset($_GET['id'])){
+		$_SESSION['MM_IdUsuario'] = $_GET['id'];
+	}else{
+		$_SESSION['MM_IdUsuario'] = 104;
+	}
 	$_SESSION['MM_Username'] = 'user';
 
 
