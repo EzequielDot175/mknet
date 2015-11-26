@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
 			$('#error_1').message({message: 3});
 			event.preventDefault();		
 		}else{
-			
+
 			$('.block-botones .boton').attr('disabled', '');
 			$('#error_1').message({def: true});
 			$(this).unbind(event);
