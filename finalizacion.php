@@ -45,46 +45,13 @@ $can = $checkVencimiento->fechaVencimiento($_SESSION['MM_IdUsuario']);
 	endif;
 
 
-(new Compra())->confirm();
 
 
+if( !(new Compra())->confirm() ){
+	header('Location: catalogo.php');
+}
 
 
-die;
-
-
-//este checkout y mensaje ponerlo dentro de la confirmacion!
-
-
-
-
- /**
-  * Updateo el dblConsumido directamente desde el carrito de compras
-  */
-// Usuario::sumConsumido();
-
-//Aqui comienza el proceso posterior al pago, si existe la como TRUE la variable checkout se realiza la tarea de ingresar pago a la tabla, descontar credito del usuario, etc.
- 
-
-	
-	//HAY PAGO REALIZADO
-	//$tipoDePago = 2; //cambiar el valor a los medios de pagos posibles. puede pasarse el valor directamente a la clase en su llamado de la funcion.
-	
-	//require_once("includes/class.carrito.php");
-	//$carrito= new carrito();
-	//$carrito->select_by_user($_SESSION["MM_IdUsuario"],$tipoDePago, ObtenerIVA());
-	
-	
-	#informacion del usuario
-	
-
-	// require_once("includes/class.usuarios.php");
-	// $dtuser = new usuarios();
-	// $dtuser->select($_SESSION["MM_IdUsuario"]);
-	// $nombre_user = $dtuser->getstrNombre();
-	// $apellido_user = $dtuser->getstrApellido();
-	// $empresa_user = $dtuser->getstrEmpresa();
-	// $email_user = $dtuser->getstrEmail();
 	
 
 if(!Debug\DBParameters::$debug){
@@ -106,7 +73,7 @@ if(!Debug\DBParameters::$debug){
 		$mail->From = 'maxx@nufarm-maxx.com';
 		$mail->FromName = 'MarketingNet ';
 		// $mail->addAddress('mknet@productosnufarm.com', '--');
-		$mail->addAddress($email_user, '--');
+		$mail->addAddress($user->strEmail, '--');
 
 
 		//$mail->addAddress($email_user, '--');

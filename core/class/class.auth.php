@@ -64,6 +64,25 @@ ob_start();
 			$_SESSION['MM_Username'] = $data->name;
 		}
 
+		public function restPoints($num){
+			$id = self::id();
+			$upd = $this->prepare(self::AUTH_RESTPOINTS);
+			$upd->bindParam(':id', $id, PDO::PARAM_INT);
+			$upd->bindParam(':num', $num, PDO::PARAM_INT);
+			$upd->execute();
+
+			return ($upd->rowCount() > 0 ? true : false);
+		}
+		public function sumConsumed($num){
+			$id = self::id();
+			$upd = $this->prepare(self::AUTH_SUMCOMSUMED);
+			$upd->bindParam(':id', $id, PDO::PARAM_INT);
+			$upd->bindParam(':num', $num, PDO::PARAM_INT);
+			$upd->execute();
+
+			return ($upd->rowCount() > 0 ? true : false);
+		}
+
 
 		public static function idAdmin(){
 			self::startSession();

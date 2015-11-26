@@ -63,6 +63,7 @@
 			<?php 
 				$i = 0;
 				foreach($collection->compras as $keycompras => $valcompras):
+						
 			?>
 
 			<!--ITEM accordeon-->
@@ -97,7 +98,7 @@
 									$x = 0;
 									foreach($valcompras as $keydetalles => $valdetalles):
 
-									
+
 								 ?>
 								 
 
@@ -107,7 +108,7 @@
 									<?php   if($x == 0){   ?>
 									<td class=" vertical-align-top canje" rowspan="<?php echo count($valcompras) ?>">
 										<div class="puntos">
-											<p class="num"><?php echo($collection->totales[$keycompras]) ?></p>
+											<p class="num"><?php echo($valcompras[0]->total) ?></p>
 											<span class="text-uppercase">puntos</span>
 										</div>
 									</td>

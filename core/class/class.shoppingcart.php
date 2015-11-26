@@ -23,6 +23,21 @@
 		 * @param  private $total
 		 * @param  private $count
 		 */
+		
+		public function removeAll(){
+			$id = Auth::id();
+			$this->beginTransaction();
+			try {
+				$del = $this->prepare(self::SHOPPINGCART_REMOVE_ALL);
+				$del->bindParam(':id',$id,PDO::PARAM_INT);
+				$del->execute();
+				$this->commit();
+			} catch (Exception $e) {
+				$this->rollback();
+				echo $e->getMessage();
+			}
+		}
+
 		public function all(){
 			$all = $this->prepare(self::SHOPPINGCART_ALL);
 			$all->bindParam(':id',$this->user_id,PDO::PARAM_INT);
@@ -121,16 +136,7 @@
 			return (Boolean)$sel->fetch()->exist;
 		}
 
-		public function confirm(){
-			$user = Auth::id();
-			$myShop = $this->all();
-
-			foreach($myShop as $key => $val):
-				echo "<pre>";
-				print_r($val);
-				echo "</pre>";
-			endforeach;
-		}
+		
 
 		public function chothingSizeSumByParams($prod_id,$size,$user,$count){
 			$upd = $this->prepare(self::SHOPPINGCART_SUMSTOCK);

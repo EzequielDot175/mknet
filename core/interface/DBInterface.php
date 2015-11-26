@@ -81,6 +81,8 @@
 			const AUTH_USER 					= "SELECT * FROM usuarios WHERE idUsuario = :id"; 
 			const AUTH_USEDPOINTS				= "SELECT SUM(dblTotal) as total FROM compra WHERE idUsuario = :id ";
 			const AUTH_USERADMIN 				= "SELECT * FROM personal WHERE id = :id";
+			const AUTH_RESTPOINTS 				= "UPDATE usuarios SET dblCredito = dblCredito - :num WHERE idUsuario = :id";
+			const AUTH_SUMCOMSUMED				= "UPDATE usuarios SET dblAsignado = dblAsignado + :num WHERE idUsuario = :id";
 			
 			/**
 			* @param class TempMaxCompra
@@ -119,6 +121,7 @@
 			// const COMPRA_BYID                      = "SELECT "
 			const COMPRA_EMPTY = "SELECT IF(COUNT(id_compra) = 0 , '1' , '0' ) as empty FROM detalles_compras WHERE id_compra = :id";
 			const COMPRA_DELETE = "DELETE FROM compra WHERE idCompra = :id";
+			const COMPRA_CREATE = "INSERT INTO compra (idUsuario,fthCompra,dblTotal,estado) VALUES (:user,NOW(),:total,1)";
 			const COMPRA_ALL = "SELECT
 			 compra.fthCompra,
 			 compra.dblTotal,
@@ -341,6 +344,9 @@
 			* @param class: DetalleCompra
 			*/
 			const DTCOMPRA_BYID                       = "SELECT * FROM detalles_compras WHERE id = :id";
+			const DTCOMPRA_CREATE 					  = "INSERT INTO 
+															detalles_compras (id_compra,id_producto,nombre,detalle,cantidad,precio_pagado,estado_producto,talle,color) 
+																VALUES (:compra,:producto,:nombre, (SELECT strDetalle FROM productos WHERE idProducto = :producto LIMIT 1) ,:cantidad,:precio,1,:talle,:color)";
 			const DTCOMPRA_JOINCOMPRA                 = "SELECT 
 			compra.idCompra as compra,
 			compra.idUsuario as user,
@@ -451,7 +457,7 @@
             	productos as prod ON prod.idProducto = cart.idProducto
 			WHERE 
 				cart.idUsuario = :id";
-
+			const SHOPPINGCART_REMOVE_ALL =  "DELETE FROM carrito WHERE idUsuario = :id";
 			const SHOPPINGCART_SUM = "SELECT IFNULL(SUM(intCantidad),0) as cantidad FROM carrito WHERE idUsuario = :id";
 			const SHOPPINGCART_REMOVE = "DELETE FROM carrito WHERE intContador = :id";
 			const SHOPPINGCART_CHECKSIZE = "SELECT IF(COUNT(intContador) > 0, 1, 0) as exist FROM carrito WHERE idUsuario = :user AND idProducto  = :prod AND talle = :size ";
@@ -467,6 +473,7 @@
 			const HISTORIAL_GET = "SELECT 
 				compra.idCompra,
 				compra.fthCompra as fecha,
+				compra.dblTotal as total,
 			    dt.estado_producto as estado,
 			    dt.cantidad,
 			    dt.talle,
@@ -505,6 +512,7 @@
 			const HISTORIAL_AUTH_BY_PROD = "SELECT 
 				compra.idCompra,
 				compra.fthCompra as fecha,
+				compra.dblTotal as total,
 			    dt.estado_producto as estado,
 			    dt.cantidad,
 			    dt.talle,
@@ -526,6 +534,7 @@
 			const HISTORIAL_AUTH_BY_STATE = "SELECT 
 				compra.idCompra,
 				compra.fthCompra as fecha,
+				compra.dblTotal as total,
 			    dt.estado_producto as estado,
 			    dt.cantidad,
 			    dt.talle,
@@ -546,6 +555,7 @@
 			const HISTORIAL_AUTH_BY_REF = "SELECT 
 				compra.idCompra,
 				compra.fthCompra as fecha,
+				compra.dblTotal as total,
 			    dt.estado_producto as estado,
 			    dt.cantidad,
 			    dt.talle,
@@ -566,6 +576,7 @@
 			const HISTORIAL_AUTH_BY_DATE = "SELECT 
 				compra.idCompra,
 				compra.fthCompra as fecha,
+				compra.dblTotal as total,
 			    dt.estado_producto as estado,
 			    dt.cantidad,
 			    dt.talle,

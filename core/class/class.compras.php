@@ -40,10 +40,71 @@ if(!class_exists('compra')):
 		}
 
 		/**
+		 * This function create a new Compra
+		 * @return [int] [id] on success
+		 * @return [boolean] on error
+		 */
+		public function create($user,$total){
+			$this->beginTransaction();
+			$result = array('success' => false,'id' => 0);
+			try {
+				$ins = $this->prepare(self::COMPRA_CREATE);
+				$ins->bindParam(':user',$user,PDO::PARAM_INT);
+				$ins->bindParam(':total',$total,PDO::PARAM_INT);
+				$ins->execute();
+
+				$result['success'] = ($ins->rowCount() > 0 ? true : false );
+				$result['id'] = $this->lastInsertId();
+				$this->commit();
+
+			} catch (Exception $e) {
+				$this->rollback();
+				echo $e->getMessage();
+			}
+
+			return (Object)$result;
+		}
+
+
+		/**
 		 * 
 		 */
 		public function Confirm(){
-			echo "string";
+			$auth =  new Auth();
+			$shop = new ShoppingCart();
+			$user = $auth->id();
+			$myShop = $shop->all();
+			$objDetails = new DetalleCompra();
+
+			$total = 0;
+
+			if(empty($myShop)){
+				return false;
+			}
+			foreach($myShop as $key => $val):
+				$total += ($val->precio * $val->cantidad);
+			endforeach;
+
+			$result_insert = $this->create($user, $total);
+
+			if ($result_insert->success) {
+				foreach($myShop as $k => $v):
+
+					try {
+						$objDetails->create($result_insert->id, $v->id_prod, $v->name, $v->cantidad, $v->precio, $v->talle, $v->color);
+						//$stock = new TempStock();
+						//echo $stock->removeTempStock($user,$v->id_prod,$v->id_talle,$v->id_color,$v->type);
+					} catch (Exception $e) {
+						echo($e->getMessage());
+					}
+
+				endforeach;
+				$auth->restPoints($total);
+				$auth->sumConsumed($total);
+				$shop->removeAll();
+				return true;
+			}
+
 		}
 
 		/**
@@ -219,6 +280,39 @@ if(!class_exists('DetalleCompra')):
 			}
 			
 
+		}
+
+		public function create($id, $prod, $name, $count, $price, $size = "", $colour = ""){
+			$this->beginTransaction();
+			$result = false;
+
+			if(is_null($size)){
+				$size = "";
+			}
+			if(is_null($colour)){
+				$colour = "";
+			}
+
+
+			try {
+				$ins = $this->prepare(self::DTCOMPRA_CREATE);
+				$ins->bindParam(':compra',$id,PDO::PARAM_INT);
+				$ins->bindParam(':producto',$prod,PDO::PARAM_INT);
+				$ins->bindParam(':nombre',$name,PDO::PARAM_STR);
+				$ins->bindParam(':cantidad',$count,PDO::PARAM_INT);
+				$ins->bindParam(':precio',$price,PDO::PARAM_INT);
+				$ins->bindParam(':talle',$size,PDO::PARAM_STR);
+				$ins->bindParam(':color',$colour,PDO::PARAM_STR);
+				$ins->execute();
+				$this->commit();
+
+				$result = ($ins->rowCount() > 0 ? true : false );
+			} catch (Exception $e) {
+				$this->rollback();
+				echo $e->getMessage();
+			}
+
+			return $result;
 		}
 
 		public function delete($id){
