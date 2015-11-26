@@ -45,11 +45,17 @@ if(!class_exists('compra')):
 		 * @return [boolean] on error
 		 */
 		public function create($user,$total){
+			date_default_timezone_set('America/Argentina/Buenos_Aires');
+			$date = date('Y-m-d H:i:s');
+
+
 			$this->beginTransaction();
+			
 			$result = array('success' => false,'id' => 0);
 			try {
 				$ins = $this->prepare(self::COMPRA_CREATE);
 				$ins->bindParam(':user',$user,PDO::PARAM_INT);
+				$ins->bindParam(':date',$date,PDO::PARAM_INT);
 				$ins->bindParam(':total',$total,PDO::PARAM_INT);
 				$ins->execute();
 

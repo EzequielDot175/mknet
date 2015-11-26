@@ -121,7 +121,7 @@
 			// const COMPRA_BYID                      = "SELECT "
 			const COMPRA_EMPTY = "SELECT IF(COUNT(id_compra) = 0 , '1' , '0' ) as empty FROM detalles_compras WHERE id_compra = :id";
 			const COMPRA_DELETE = "DELETE FROM compra WHERE idCompra = :id";
-			const COMPRA_CREATE = "INSERT INTO compra (idUsuario,fthCompra,dblTotal,estado) VALUES (:user,NOW(),:total,1)";
+			const COMPRA_CREATE = "INSERT INTO compra (idUsuario,fthCompra,dblTotal,estado) VALUES (:user,:date,:total,1)";
 			const COMPRA_ALL = "SELECT
 			 compra.fthCompra,
 			 compra.dblTotal,

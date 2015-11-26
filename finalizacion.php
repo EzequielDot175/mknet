@@ -10,12 +10,18 @@ require_once('includes/class.compras.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+/**
+ * Verifico los puntos disponibles
+ */
 
 if(!Usuario::sCheckPoints()):
 	@header('Location: carrito.php');
 	exit();
 endif;
 
+/**
+ * Seteo datos para el envio del email
+ */
 
 $user = Auth::User();
 $seller = Vendedor::EmailById($user->vendedor);
@@ -38,6 +44,10 @@ $template = new Template('pedido',array(
 ));
 
 
+/**
+ * Checkeo el vencimiento
+ * @var TempStock
+ */
 $checkVencimiento = new TempStock();
 $can = $checkVencimiento->fechaVencimiento($_SESSION['MM_IdUsuario']);
 	if($can):
@@ -46,14 +56,18 @@ $can = $checkVencimiento->fechaVencimiento($_SESSION['MM_IdUsuario']);
 
 
 
-
+/**
+ * Confirmo la compra
+ */
 if( !(new Compra())->confirm() ){
 	header('Location: catalogo.php');
 }
 
 
 	
-
+/**
+ * Envio el email, se desactiva si debug es true
+ */
 if(!Debug\DBParameters::$debug){
 
 
