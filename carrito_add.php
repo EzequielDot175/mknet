@@ -5,31 +5,11 @@ $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
 
 
-if($_SESSION['sended'] == 1){
-	header('location: carrito.php');
-	die();
-}
-
-$_SESSION['sended'] = 1;
-
-	
 
 if(!isset($_SESSION)):
 	@session_start();
 endif;
 
-
-// function redirect(){
-// 	header('location: http://nufarm-maxx.com/marketingNetDesarrollo/carrito.php');
-// }
-function redirect(){
-	echo('<script>window.location.href="carrito.php";</script>');
-}
-// error_reporting(E_ALL);
-// ini_set('display_errors', 'On');
-// 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
 
 $tempMaxCompra = new TempMaxCompra();
 
