@@ -156,7 +156,7 @@
 					</div>
 					
 					<div class="block-right">
-						<p class="text-a text-uppercase"><?php echo Auth::User()->strNombre ?></p>
+						<p class="text-a text-uppercase"><?php echo Auth::User()->strEmpresa ?></p>
 						<p class="num"><?php echo Auth::User()->dblCredito; ?></p>
 						<p class="text-b text-uppercase">PUNTOS DISPONIBLES 
 							<br>HASTA 31/07/2016
