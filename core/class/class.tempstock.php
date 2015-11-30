@@ -364,9 +364,8 @@ ob_start();
 					 VALUES 
 						(".$user.", ".$prod." , ".$cant." , 0 , '".$time."')";
 
-			$update_stock_prod = "UPDATE productos SET intStock = intStock - ".$cant;
+			$update_stock_prod = "UPDATE productos SET intStock = intStock - ".$cant." WHERE idProducto = ".$prod;
 			
-			// create history stock
 
 
 			if ($this->exec($insert_stock) == 0):
