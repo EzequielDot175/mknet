@@ -14,15 +14,22 @@ $consulta = Consulta::byId($_POST['idConsulta']);
 $mensaje = $_POST['strCampo'];
 $usuario = Auth::UserAdmin();
 
-Mail::informarRespuestaConsulta(
-	array(
-		'asunto' => $consulta->strAsunto,
-		'nombre' => $usuario->nombre,
-		'apellido' => $usuario->apellido,
-		'mensaje' => $_POST['strCampo'],
-		'user_id' => $consulta->idUsuario
-		)
-	);
+$info_user = (new Usuario())->getById($consulta->idUsuario);
+
+
+if($info_user[0]->vendedor != 16){
+
+	Mail::informarRespuestaConsulta(
+		array(
+			'asunto' => $consulta->strAsunto,
+			'nombre' => $usuario->nombre,
+			'apellido' => $usuario->apellido,
+			'mensaje' => $_POST['strCampo'],
+			'user_id' => $consulta->idUsuario
+			)
+		);
+
+}
 
 
 Consulta::newResponse($_POST['strCampo'],$_POST['idConsulta']);

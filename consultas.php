@@ -3,7 +3,9 @@
 	
 	Utils::POST('submit',function(){
 		Consulta::newConsulta($_POST);
-		Mail::informarConsulta($_POST);
+		if(Auth::User()->vendedor != 16){
+			Mail::informarConsulta($_POST);
+		}
 	});
 ?>
 <!-- Header -->

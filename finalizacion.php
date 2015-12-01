@@ -87,7 +87,15 @@ if(!Debug\DBParameters::$debug){
 		$mail->From = 'maxx@nufarm-maxx.com';
 		$mail->FromName = 'MarketingNet ';
 		// $mail->addAddress('mknet@productosnufarm.com', '--');
-		$mail->addAddress($user->strEmail, '--');
+		
+		/**
+		 * Excepciones: Aqui se agrego que cierto vendedor espefico reciba los emails de canjeo y no sus clientes
+		 */
+		if($user->vendedor == 16){
+			$mail->addAddress('JoseMaria.Scardini@ar.nufarm.com', '--');
+		}else{
+			$mail->addAddress($user->strEmail, '--');
+		}
 
 
 		//$mail->addAddress($email_user, '--');
